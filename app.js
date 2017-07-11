@@ -1,9 +1,9 @@
-var express = require('express'),
+const express = require('express'),
     app = express(),
     parser = require('rss-parser'),
     rssUrl = 'http://feeds.soundcloud.com/users/soundcloud:users:264614350/sounds.rss';
 
-app.get('/episodes', function(req, res) {
+app.get('/', function(req, res) {
     parser.parseURL(rssUrl, function(err, rss) {
         var items = [],
             list = rss.feed.entries;
@@ -21,5 +21,4 @@ app.get('/episodes', function(req, res) {
     });
 });
 
-// Export your Express configuration so that it can be consumed by the Lambda handler
 module.exports = app;

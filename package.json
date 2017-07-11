@@ -1,11 +1,14 @@
 {
-  "name": "codefiction-tech-podcast-api",
-  "description": "JSON API for codefiction podcasts",
-  "version": "0.0.1",
-  "private": true,
-  "dependencies": {
-    "aws-serverless-express": "latest",
-    "express": "latest",
-    "rss-parser": "^2.10.1"
-  }
+    "name": "codefiction-tech-podcast-api",
+    "description": "JSON API for codefiction podcasts",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "aws-serverless-express": "latest",
+        "express": "latest",
+        "rss-parser": "^2.10.1"
+    }
 }
