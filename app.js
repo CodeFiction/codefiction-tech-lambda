@@ -4,19 +4,18 @@ var express = require('express'),
     rssUrl = 'http://feeds.soundcloud.com/users/soundcloud:users:264614350/sounds.rss';
 
 app.get('/episodes', function(req, res) {
-    parser.parseURL(rssUrl, function(err, feed) {
+    parser.parseURL(rssUrl, function(err, rss) {
         var items = [],
-            list = feed.rss.channel;
-        for (var key in list) {
-            if (key === 'item') {
-                items.push({
-                    title: list[key].title,
-                    url: list[key].url,
-                    duration: list[key]['itunes:duration'],
-                    date: list[key].pubDate,
-                    description: list[key].description,
-                });
-            }
+            list = rss.feed.entries;
+        for (var i = 0; i < list.length; i++) {
+            items.push({
+                title: list[i].title,
+                url: list[i].link,
+                duration: list[i].itunes.duration,
+                image: list[i].itunes.image,
+                date: list[i].pubDate,
+                description: list[i].content,
+            });
         }
         res.send(items);
     });
