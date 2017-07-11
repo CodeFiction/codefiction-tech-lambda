@@ -3,6 +3,12 @@ const express = require('express'),
     parser = require('rss-parser'),
     rssUrl = 'http://feeds.soundcloud.com/users/soundcloud:users:264614350/sounds.rss';
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.get('/', function(req, res) {
     parser.parseURL(rssUrl, function(err, rss) {
         var items = [],
