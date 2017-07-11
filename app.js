@@ -17,7 +17,7 @@ app.get('/episodes', function(req, res) {
                 description: list[i].content,
             });
         }
-        res.send(items);
+        res.json(items);
     });
 });
 
