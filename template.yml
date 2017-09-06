@@ -23,8 +23,8 @@ Resources:
           Properties:
             Path: /
             Method: get
-        PostEvent:
+        GetEvent:
           Type: Api
           Properties:
-            Path: /
-            Method: post
+            Path: /search
+            Method: get
