@@ -29,17 +29,22 @@ app.get('/', function (req, res) {
 
 app.get('/search', function (req, res) {
     var keyword = req.query.keyword;
-    if (keyword === undefined) {
+    if (!keyword) {
         res.json([]);
         return;
     }
 
+    keyword = keyword.toLowerCase();
+
     parser.parseURL(rssUrl, function (err, rss) {
         var items = [],
             list = rss.feed.entries;
+        var content, title;
         for (var i = 0; i < list.length; i++) {
-            if (list[i].content.toLowerCase().includes(keyword.toLowerCase())
-                || list[i].title.toLowerCase().includes(keyword.toLowerCase())) {
+            content = list[i].content.toLowerCase();
+            title = list[i].title.toLowerCase();
+
+            if (content.includes(keyword) || title.includes(keyword)) {
                 items.push({
                     title: list[i].title,
                     url: list[i].link,
