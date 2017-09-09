@@ -9,7 +9,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get('/', function (req, res) {
+app.get('/podcasts/', function (req, res) {
     parser.parseURL(rssUrl, function (err, rss) {
         var items = [],
             list = rss.feed.entries;
@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/search', function (req, res) {
+app.get('/podcasts/search', function (req, res) {
     var keyword = req.query.keyword;
     if (!keyword) {
         res.json([]);
